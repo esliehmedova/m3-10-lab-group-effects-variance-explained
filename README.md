@@ -115,52 +115,6 @@ The overall ANOVA F-test tells you that *at least one* group differs, but not *w
    - Which pairs are *not* significantly different?
    - Do the confidence intervals help you understand the practical size of the differences?
 
-### Task 4: Compute Effect Sizes
-
-Statistical significance does not tell you how *large* an effect is. Effect sizes fill that gap.
-
-**Eta-squared (η²):**
-
-1. Compute η² using the formula: η² = SS_between / SS_total.
-   - SS_between = Σ nᵢ (x̄ᵢ − x̄)² (sum over groups)
-   - SS_total = Σ (xⱼ − x̄)² (sum over all observations)
-2. Interpret η² using Cohen's benchmarks: small ≈ 0.01, medium ≈ 0.06, large ≈ 0.14.
-
-**Cohen's d (pairwise):**
-
-1. For the group pair with the largest mean difference (from Tukey HSD), compute Cohen's d:
-   d = (x̄₁ − x̄₂) / s_pooled
-   where s_pooled = √[((n₁−1)s₁² + (n₂−1)s₂²) / (n₁ + n₂ − 2)]
-2. Interpret using Cohen's benchmarks: small ≈ 0.2, medium ≈ 0.5, large ≈ 0.8.
-3. In a markdown cell, discuss:
-   - Is the overall effect (η²) practically meaningful, or just statistically significant?
-   - How large is the biggest pairwise difference in standardized terms?
-
-### Task 5: Visualize Group Distributions
-
-Good visuals make your statistical results tangible. Create at least three plots:
-
-1. **Box plots** of the outcome variable by group, with individual data points overlaid (use `seaborn.boxplot` + `seaborn.stripplot`).
-2. **Violin plots** to show the full distribution shape for each group (`seaborn.violinplot`).
-3. **Bar plot of group means with error bars** (95% CI) — you can use `seaborn.barplot` which adds CIs by default, or compute them manually.
-4. Annotate one of the plots with the Tukey HSD significance brackets or asterisks for pairs that differ significantly (optional but encouraged).
-5. In a markdown cell, reflect:
-   - Which visualization communicates the group differences most effectively and why?
-   - Do the distributions suggest any assumption violations you noticed in Task 2?
-
-### Task 6: Connect ANOVA to R² in Regression
-
-ANOVA and regression are mathematically equivalent when the predictor is categorical. Prove it here.
-
-1. Create dummy variables for the grouping column using `pd.get_dummies` (drop one level to avoid multicollinearity).
-2. Fit an `sklearn.linear_model.LinearRegression` (or `statsmodels.OLS`) predicting the outcome from the dummies.
-3. Compute R² from the fitted model.
-4. Compare this R² to the η² you computed in Task 4.
-5. In a markdown cell, explain:
-   - Why are η² and R² (essentially) identical?
-   - What does this tell you about the relationship between ANOVA and regression?
-   - How does thinking of ANOVA as a regression model help when you move to more complex models?
-
 ## Submission
 
 ### What to Submit
@@ -172,9 +126,6 @@ ANOVA and regression are mathematically equivalent when the predictor is categor
 - [ ] One-way ANOVA is performed with F-statistic and p-value reported
 - [ ] Levene's test and Shapiro-Wilk / Q-Q plot check ANOVA assumptions
 - [ ] Tukey HSD post-hoc results identify which group pairs differ
-- [ ] Eta-squared and Cohen's d are computed and interpreted with benchmarks
-- [ ] At least three visualizations show group distributions clearly
-- [ ] R² from a dummy-coded regression matches η² from ANOVA
 - [ ] All markdown cells contain clear, concise interpretations
 
 ### How to Submit
